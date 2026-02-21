@@ -1,5 +1,5 @@
-# build output
-dist/
+# build output (dist/ wird via GitHub Actions committed)
+# dist/
 # generated types
 .astro/
 
