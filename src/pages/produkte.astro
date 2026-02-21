@@ -1,0 +1,546 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  // ── Temperatur ──────────────────────────────────────────
+  {
+    id: 1, slug: 'dt-500',
+    name: 'DT-500 Präzisionsthermometer',
+    category: 'temperatur',
+    price: 89,
+    range: '−200 °C bis +1350 °C',
+    accuracy: '±0.1 °C',
+    badge: 'Bestseller',
+    desc: 'Hochpräzises digitales Thermometer für industrielle Anwendungen mit großem Messbereich und Auto-Hold-Funktion.',
+    specs: ['Auflösung: 0.01 °C', 'IP67 schutzart', 'Reaktionszeit: < 1 s', '4-Kanal-Eingang'],
+  },
+  {
+    id: 2, slug: 'ir-900',
+    name: 'IR-900 Infrarot-Pyrometer',
+    category: 'temperatur',
+    price: 245,
+    range: '−50 °C bis +3000 °C',
+    accuracy: '±0.5 °C',
+    badge: null,
+    desc: 'Berührungslose Temperaturmessung für extreme Bedingungen, glühende Metalle und Hochofen-Anwendungen.',
+    specs: ['Optik 50:1', 'Laserpointer Klasse 2', 'Analog 4–20 mA', 'RS-232 Schnittstelle'],
+  },
+  {
+    id: 3, slug: 'tc-l8',
+    name: 'TC-L8 Thermocouple Logger',
+    category: 'temperatur',
+    price: 389,
+    range: '−270 °C bis +1820 °C',
+    accuracy: '±0.2 °C',
+    badge: 'NEU',
+    desc: '8-Kanal Datenlogger für simultane Temperaturerfassung mit USB-Schnittstelle und 16 GB Speicher.',
+    specs: ['8 Kanäle simultan', 'USB 3.0', '16 GB Speicher', 'SD-Karte optional'],
+  },
+  {
+    id: 4, slug: 'pt-200',
+    name: 'PT-200 Kontaktthermometer',
+    category: 'temperatur',
+    price: 59,
+    range: '−50 °C bis +400 °C',
+    accuracy: '±0.3 °C',
+    badge: null,
+    desc: 'Kompaktes Einstichthermometer für Lebensmittel, Kunststoffe und medizinische Anwendungen.',
+    specs: ['HACCP-konform', 'Edelstahl Sonde', 'Haltezeit: 30 min', 'Min/Max Funktion'],
+  },
+
+  // ── Druck ───────────────────────────────────────────────
+  {
+    id: 5, slug: 'md-200',
+    name: 'MD-200 Digitalmanometer',
+    category: 'druck',
+    price: 125,
+    range: '0 bis 400 bar',
+    accuracy: '±0.1 % FS',
+    badge: null,
+    desc: 'Robustes Digitalmanometer für industrielle Druckmessungen in rauen Umgebungen und hohen Drücken.',
+    specs: ['IP65 schutzart', 'G1/2 Anschluss', 'Hintergrundbeleuchtung', 'Min/Max Speicher'],
+  },
+  {
+    id: 6, slug: 'dd-50',
+    name: 'DD-50 Differenzdruckmesser',
+    category: 'druck',
+    price: 278,
+    range: '±50 mbar',
+    accuracy: '±0.05 % FS',
+    badge: null,
+    desc: 'Hochgenaues Differenzdruckmessgerät für Filtrationsüberwachung, Reinräume und Luftströmungsmessung.',
+    specs: ['Auflösung: 0.001 mbar', 'Analogausgang 0–10 V', 'RS-485 Modbus', '4 Einheiten wählbar'],
+  },
+  {
+    id: 7, slug: 'dt-1000',
+    name: 'DT-1000 Drucktransmitter',
+    category: 'druck',
+    price: 456,
+    range: '0 bis 1000 bar',
+    accuracy: '±0.075 % FS',
+    badge: 'PRO',
+    desc: 'Industrieller Drucktransmitter mit 4–20 mA Ausgang für SCADA-Systeme und Prozessautomation.',
+    specs: ['4–20 mA Ausgang', 'ATEX-zertifiziert', 'SIL 2 tauglich', 'Edelstahl 316L'],
+  },
+  {
+    id: 8, slug: 'hd-pro',
+    name: 'HD-Pro Hochdrucksensor',
+    category: 'druck',
+    price: 590,
+    range: '0 bis 2500 bar',
+    accuracy: '±0.05 % FS',
+    badge: 'PRO',
+    desc: 'Für extreme Hochdruckanwendungen in der Hydraulik, Öl- & Gasindustrie sowie Tiefbohrung.',
+    specs: ['Keramik-Zelle', 'Ti6Al4V Gehäuse', 'EMV-geschirmt', 'IECEx zugelassen'],
+  },
+
+  // ── Strahlung ───────────────────────────────────────────
+  {
+    id: 9, slug: 'gz-pro',
+    name: 'GZ-Pro Geigerzähler',
+    category: 'strahlung',
+    price: 345,
+    range: '0.01 bis 9999 μSv/h',
+    accuracy: '±10 %',
+    badge: null,
+    desc: 'Professioneller Geigerzähler für α-, β- und γ-Strahlung mit akustischem und visuellem Alarm.',
+    specs: ['α β γ Detektion', 'Alarmschwelle einstellbar', 'USB-Datenlogging', 'IP54'],
+  },
+  {
+    id: 10, slug: 'uv-340',
+    name: 'UV-340 Radiometer',
+    category: 'strahlung',
+    price: 189,
+    range: 'UVA 315–400 nm · UVB 280–315 nm',
+    accuracy: '±5 %',
+    badge: null,
+    desc: 'Präzises UV-Radiometer für UV-A, UV-B und UV-C Messungen in Forschung, Phototherapie und Industrie.',
+    specs: ['3 UV-Bänder', 'Cosinus-korrigiert', 'Peak-Hold', 'Triopod-Gewinde'],
+  },
+  {
+    id: 11, slug: 'rd-x1',
+    name: 'RD-X1 Röntgen-Dosimeter',
+    category: 'strahlung',
+    price: 567,
+    range: '0.001 bis 99.99 mSv',
+    accuracy: '±8 %',
+    badge: 'NEU',
+    desc: 'Elektronisches Personendosimeter für Röntgen- und Gammastrahlung mit Echtzeit-Alarmierung.',
+    specs: ['ENEA-zertifiziert', 'Bluetooth 5.0', '2-Jahres Akku', 'Sturzsicher IK06'],
+  },
+
+  // ── Spezial ─────────────────────────────────────────────
+  {
+    id: 12, slug: 'ph-700',
+    name: 'PH-700 pH-Meter',
+    category: 'spezial',
+    price: 95,
+    range: '0 bis 14 pH',
+    accuracy: '±0.01 pH',
+    badge: null,
+    desc: 'Professionelles pH-Meter mit automatischer Temperaturkompensation (ATC) und 3-Punkt-Kalibrierung.',
+    specs: ['ATC -5–105 °C', 'GLP-Datenspeicher', 'IP67', 'Puffersets inkl.'],
+  },
+  {
+    id: 13, slug: 'dm-90',
+    name: 'DM-90 TRMS Multimeter',
+    category: 'spezial',
+    price: 165,
+    range: '6000 counts',
+    accuracy: '±0.5 %',
+    badge: 'Bestseller',
+    desc: 'True-RMS Multimeter mit CAT III 600 V Bewertung, großem Backlight und Durchgangsprüfer.',
+    specs: ['TRMS AC/DC', 'NCV berührungslos', 'Diodentest', 'Frequenzmessung'],
+  },
+  {
+    id: 14, slug: 'wm-200',
+    name: 'WM-200 Anemometer',
+    category: 'spezial',
+    price: 219,
+    range: '0.3 bis 45 m/s',
+    accuracy: '±3 %',
+    badge: null,
+    desc: 'Digitales Flügelrad-Anemometer für Wind- und Luftströmungsmessung mit gleichzeitiger Temperaturerfassung.',
+    specs: ['Wind + °C simultan', 'Luftvolumenstrom', 'Datalogging 8000 Werte', 'USB-C'],
+  },
+  {
+    id: 15, slug: 'lx-500',
+    name: 'LX-500 Luxmeter',
+    category: 'spezial',
+    price: 139,
+    range: '0 bis 200.000 lux',
+    accuracy: '±4 %',
+    badge: null,
+    desc: 'Präzises digitales Luxmeter für Beleuchtungsstärke-Messungen in Arbeitsstätten, Labors und Fotografie.',
+    specs: ['4 Messbereiche', 'Kosinuskorrektur', 'Datenlogger', 'Relative Anzeige'],
+  },
+];
+
+const categories = [
+  { slug: 'alle',       label: 'Alle Produkte' },
+  { slug: 'temperatur', label: 'Temperatur' },
+  { slug: 'druck',      label: 'Druck' },
+  { slug: 'strahlung',  label: 'Strahlung' },
+  { slug: 'spezial',    label: 'Spezial' },
+];
+---
+
+<Layout
+  title="Produkte — ERIMEC Messgeräte"
+  description="Entdecken Sie über 1.200 Präzisionsmessgeräte für Temperatur, Druck, Strahlung und weitere Messgrößen."
+>
+
+  <!-- ── Page Header ─────────────────────────────────────── -->
+  <div class="relative border-b border-line overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-60"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber/40 to-transparent"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-12">
+      <!-- Breadcrumb -->
+      <div class="flex items-center gap-2 text-[11px] tracking-widest text-text-dim uppercase mb-8">
+        <a href="/" class="hover:text-amber transition-colors">Start</a>
+        <span class="text-muted">/</span>
+        <span class="text-amber">Produkte</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-px bg-amber"></span>
+            <span class="text-amber text-[11px] tracking-[0.4em] uppercase">Sortiment</span>
+          </div>
+          <h1 class="font-display text-6xl md:text-7xl tracking-wide">
+            MESS<span class="text-amber">GERÄTE</span>
+          </h1>
+        </div>
+        <p class="text-text-dim max-w-sm leading-relaxed">
+          <span id="product-count" class="font-display text-amber text-2xl">{products.length}</span>
+          &nbsp;Produkte · alle kalibriert · mit Garantie
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Filter Bar ──────────────────────────────────────── -->
+  <div class="sticky top-16 z-40 border-b border-line bg-bg/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-0 overflow-x-auto scrollbar-hide">
+        {categories.map(cat => (
+          <button
+            data-filter={cat.slug}
+            class={`filter-btn shrink-0 px-6 py-4 text-xs tracking-[0.25em] uppercase transition-all duration-200 border-b-2 whitespace-nowrap ${
+              cat.slug === 'alle'
+                ? 'border-amber text-amber'
+                : 'border-transparent text-text-dim hover:text-text hover:border-line'
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+
+        <!-- Search -->
+        <div class="ml-auto shrink-0 pl-6 py-3 border-l border-line">
+          <div class="flex items-center gap-2 border border-line px-4 py-2 focus-within:border-amber/50 transition-colors">
+            <svg class="w-3.5 h-3.5 text-text-dim" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Suchen…"
+              class="bg-transparent text-text text-xs tracking-wide outline-none w-36 placeholder:text-muted"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Product Grid ────────────────────────────────────── -->
+  <div class="max-w-7xl mx-auto px-6 py-12">
+
+    <!-- No results -->
+    <div id="no-results" class="hidden py-24 text-center">
+      <div class="text-muted text-4xl mb-4">◈</div>
+      <p class="text-text-dim text-sm tracking-widest uppercase">Keine Produkte gefunden</p>
+    </div>
+
+    <!-- Grid -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {products.map(p => (
+        <article
+          data-category={p.category}
+          data-name={p.name.toLowerCase()}
+          class="product-card group relative border border-line bg-surface/20 hover:border-amber/40 hover:bg-surface/50 transition-all duration-400 overflow-hidden"
+        >
+          <!-- Badge -->
+          {p.badge && (
+            <div class="absolute top-4 right-4 z-10 bg-amber text-bg text-[10px] tracking-[0.25em] uppercase px-2.5 py-1 font-medium">
+              {p.badge}
+            </div>
+          )}
+
+          <!-- Visual area with product SVG -->
+          <div class="relative h-44 bg-surface border-b border-line flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 grid-bg opacity-40"></div>
+            <!-- Category icon, large -->
+            <div class="relative z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+              {p.category === 'temperatur' && (
+                <svg viewBox="0 0 80 80" class="w-20 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="34" y="8" width="12" height="42" rx="6" stroke="#C8820A" stroke-width="1.5"/>
+                  <circle cx="40" cy="56" r="12" stroke="#C8820A" stroke-width="1.5"/>
+                  <circle cx="40" cy="56" r="7" fill="#C8820A" opacity="0.4"/>
+                  <rect x="38" y="18" width="4" height="28" rx="2" fill="#C8820A" opacity="0.4"/>
+                  <line x1="46" y1="24" x2="54" y2="24" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+                  <line x1="46" y1="32" x2="54" y2="32" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+                  <line x1="46" y1="40" x2="56" y2="40" stroke="#C8820A" stroke-width="1.5" opacity="0.7"/>
+                </svg>
+              )}
+              {p.category === 'druck' && (
+                <svg viewBox="0 0 80 80" class="w-20 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="40" cy="36" r="24" stroke="#C8820A" stroke-width="1.5"/>
+                  <circle cx="40" cy="36" r="18" stroke="#C8820A" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+                  <line x1="40" y1="36" x2="55" y2="20" stroke="#C8820A" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="40" cy="36" r="4" fill="#C8820A"/>
+                  <rect x="36" y="58" width="8" height="10" rx="1" stroke="#C8820A" stroke-width="1.5"/>
+                  <line x1="18" y1="36" x2="24" y2="36" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+                  <line x1="56" y1="36" x2="62" y2="36" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+                  <line x1="40" y1="14" x2="40" y2="20" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+                </svg>
+              )}
+              {p.category === 'strahlung' && (
+                <svg viewBox="0 0 80 80" class="w-20 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="40" cy="40" r="8" stroke="#C8820A" stroke-width="1.5"/>
+                  <path d="M40 32 L40 14" stroke="#C8820A" stroke-width="1.5" opacity="0.8"/>
+                  <path d="M40 32 L40 14" stroke="#C8820A" stroke-width="1.5" opacity="0.8" transform="rotate(120 40 40)"/>
+                  <path d="M40 32 L40 14" stroke="#C8820A" stroke-width="1.5" opacity="0.8" transform="rotate(240 40 40)"/>
+                  <path d="M32 38 L18 30" stroke="#C8820A" stroke-width="7" stroke-linecap="round" opacity="0.22"/>
+                  <path d="M32 38 L18 30" stroke="#C8820A" stroke-width="7" stroke-linecap="round" opacity="0.22" transform="rotate(120 40 40)"/>
+                  <path d="M32 38 L18 30" stroke="#C8820A" stroke-width="7" stroke-linecap="round" opacity="0.22" transform="rotate(240 40 40)"/>
+                  <circle cx="40" cy="40" r="24" stroke="#C8820A" stroke-width="0.5" stroke-dasharray="1 6" opacity="0.3"/>
+                </svg>
+              )}
+              {p.category === 'spezial' && (
+                <svg viewBox="0 0 80 80" class="w-20 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="16" y="10" width="48" height="60" rx="3" stroke="#C8820A" stroke-width="1.5"/>
+                  <rect x="22" y="18" width="36" height="18" rx="2" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+                  <text x="40" y="31" text-anchor="middle" fill="#C8820A" font-size="12" font-family="monospace" font-weight="bold" opacity="0.9">4.72</text>
+                  <circle cx="28" cy="48" r="4" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+                  <circle cx="40" cy="48" r="4" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+                  <circle cx="52" cy="48" r="4" fill="#C8820A" opacity="0.5"/>
+                  <circle cx="28" cy="60" r="4" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+                  <circle cx="40" cy="60" r="4" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+                  <circle cx="52" cy="60" r="4" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+                </svg>
+              )}
+            </div>
+
+            <!-- Hover scan overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-amber/0 to-amber/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            <!-- Serial number watermark -->
+            <div class="absolute bottom-2 left-3 text-[9px] tracking-widest text-muted font-mono">
+              SN:{p.id.toString().padStart(4,'0')}-X
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="p-6">
+            <div class="text-[10px] tracking-[0.3em] text-amber-dim uppercase mb-2">{p.category}</div>
+            <h3 class="text-text font-medium leading-tight mb-3 group-hover:text-amber-bright transition-colors duration-300">
+              {p.name}
+            </h3>
+            <p class="text-text-dim text-sm leading-relaxed mb-5 line-clamp-2">{p.desc}</p>
+
+            <!-- Specs -->
+            <div class="space-y-1.5 mb-5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-muted tracking-wide">Messbereich</span>
+                <span class="text-text-dim font-mono text-[11px]">{p.range}</span>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-muted tracking-wide">Genauigkeit</span>
+                <span class="text-text-dim font-mono text-[11px]">{p.accuracy}</span>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="h-px bg-line mb-5"></div>
+
+            <!-- Price + Action -->
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-[10px] tracking-widest text-muted uppercase">Ab</div>
+                <div class="font-display text-2xl text-amber tracking-widest">€{p.price}</div>
+              </div>
+              <button
+                class="border border-amber/50 text-amber text-[11px] tracking-[0.2em] uppercase px-4 py-2.5 hover:bg-amber hover:text-bg transition-all duration-300"
+                onclick={`openModal(${p.id})`}
+              >
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Bottom indicator line -->
+          <div class="h-px bg-amber/0 group-hover:bg-amber/30 transition-colors duration-300"></div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <!-- ── Product Detail Modal ────────────────────────────── -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true">
+    <!-- Backdrop -->
+    <div id="modal-backdrop" class="absolute inset-0 bg-bg/90 backdrop-blur-md" onclick="closeModal()"></div>
+
+    <!-- Panel -->
+    <div class="relative w-full max-w-2xl border border-line bg-surface max-h-[90vh] overflow-y-auto animate-fade-up">
+      <!-- Close -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 border border-line flex items-center justify-center text-text-dim hover:text-text hover:border-amber/50 transition-all duration-200 z-10">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Modal content filled by JS -->
+      <div id="modal-content" class="p-8"></div>
+    </div>
+  </div>
+
+</Layout>
+
+
+<script define:vars={{ products }}>
+  // ── Filter ─────────────────────────────────────────────
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.product-card');
+  const searchInput = document.getElementById('search-input');
+  const noResults = document.getElementById('no-results');
+  const countEl = document.getElementById('product-count');
+
+  let activeFilter = 'alle';
+  let searchQuery = '';
+
+  function applyFilters() {
+    let visible = 0;
+    cards.forEach(card => {
+      const cat  = card.dataset.category;
+      const name = card.dataset.name;
+      const matchFilter = activeFilter === 'alle' || cat === activeFilter;
+      const matchSearch = name.includes(searchQuery.toLowerCase());
+      const show = matchFilter && matchSearch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noResults.classList.toggle('hidden', visible > 0);
+    if (countEl) countEl.textContent = String(visible);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      filterBtns.forEach(b => {
+        b.classList.remove('border-amber', 'text-amber');
+        b.classList.add('border-transparent', 'text-text-dim');
+      });
+      btn.classList.add('border-amber', 'text-amber');
+      btn.classList.remove('border-transparent', 'text-text-dim');
+      applyFilters();
+    });
+  });
+
+  searchInput?.addEventListener('input', e => {
+    searchQuery = e.target.value;
+    applyFilters();
+  });
+
+  // ── Check URL for initial category ────────────────────
+  const params = new URLSearchParams(window.location.search);
+  const initCat = params.get('kategorie');
+  if (initCat) {
+    const btn = document.querySelector(`[data-filter="${initCat}"]`);
+    if (btn) btn.click();
+  }
+
+  // ── Modal ──────────────────────────────────────────────
+  const modal = document.getElementById('product-modal');
+  const modalContent = document.getElementById('modal-content');
+
+  window.openModal = (id) => {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+
+    const specsHtml = p.specs.map(s =>
+      `<li class="flex items-center gap-2 text-sm text-text-dim">
+        <span class="w-1.5 h-1.5 bg-amber rounded-full shrink-0"></span>
+        ${s}
+      </li>`
+    ).join('');
+
+    modalContent.innerHTML = `
+      <div class="flex items-center gap-3 mb-6">
+        <span class="w-6 h-px bg-amber"></span>
+        <span class="text-[10px] tracking-[0.35em] text-amber uppercase">${p.category}</span>
+      </div>
+
+      <h2 class="font-display text-3xl tracking-wide text-text mb-2">${p.name.toUpperCase()}</h2>
+      <p class="text-text-dim leading-relaxed mb-8">${p.desc}</p>
+
+      <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="border border-line p-4">
+          <div class="text-[10px] tracking-widest text-muted uppercase mb-1">Messbereich</div>
+          <div class="text-text font-mono text-sm">${p.range}</div>
+        </div>
+        <div class="border border-line p-4">
+          <div class="text-[10px] tracking-widest text-muted uppercase mb-1">Genauigkeit</div>
+          <div class="text-text font-mono text-sm">${p.accuracy}</div>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <div class="text-[10px] tracking-[0.3em] text-amber uppercase mb-4">Technische Details</div>
+        <ul class="space-y-2.5">${specsHtml}</ul>
+      </div>
+
+      <div class="border-t border-line pt-6 flex items-center justify-between">
+        <div>
+          <div class="text-[10px] tracking-widest text-muted uppercase mb-1">Preis ab</div>
+          <div class="font-display text-4xl text-amber tracking-widest">€${p.price}</div>
+          <div class="text-muted text-[11px] mt-1">zzgl. MwSt. · inkl. Kalibrierprotokoll</div>
+        </div>
+        <a
+          href="/kontakt"
+          class="bg-amber text-bg text-xs tracking-[0.2em] uppercase px-6 py-3 hover:bg-amber-light transition-colors duration-300 font-medium"
+        >
+          Anfrage senden
+        </a>
+      </div>
+    `;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeModal = () => {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') window.closeModal();
+  });
+</script>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

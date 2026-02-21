@@ -1,17 +1,520 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="ERIMEC — Präzisionsmessgeräte" description="ERIMEC ist Ihr zuverlässiger Partner für hochwertige Messgeräte und Messtechnik. Qualität, Erfahrung und Innovation.">
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
+
+    <!-- Scan line effect -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber/30 to-transparent animate-scan"></div>
+    </div>
+
+    <!-- Corner crosshairs -->
+    <div class="pointer-events-none absolute inset-8 hidden lg:block">
+      <div class="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-amber/40"></div>
+      <div class="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-amber/40"></div>
+      <div class="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-amber/40"></div>
+      <div class="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-amber/40"></div>
+    </div>
+
+    <!-- Ambient glow -->
+    <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-amber/5 blur-[120px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Text -->
+      <div>
+        <!-- Label -->
+        <div class="animate-fade-up flex items-center gap-3 mb-8">
+          <span class="w-8 h-px bg-amber"></span>
+          <span class="text-amber text-[11px] tracking-[0.4em] uppercase font-medium">Messtechnik seit 1998</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-amber animate-glow"></span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="animate-fade-up delay-100 font-display text-[clamp(4rem,10vw,8rem)] leading-[0.9] tracking-wide text-text mb-6">
+          PRÄZISION<br/>
+          <span class="text-amber">DIE</span><br/>
+          ZÄHLT
+        </h1>
+
+        <!-- Description -->
+        <p class="animate-fade-up delay-200 text-text-dim text-lg leading-relaxed max-w-md mb-10">
+          Hochwertige Messgeräte für Temperatur, Druck, Strahlung und
+          mehr — für Industrie, Forschung und Wissenschaft.
+          Über <strong class="text-text">1.200 Produkte</strong> aus erster Hand.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="animate-fade-up delay-300 flex flex-wrap gap-4">
+          <a
+            href="/produkte"
+            class="group relative inline-flex items-center gap-3 bg-amber text-bg font-medium text-sm tracking-[0.15em] uppercase px-8 py-4 hover:bg-amber-light transition-colors duration-300 overflow-hidden"
+          >
+            <span class="relative z-10">Produkte entdecken</span>
+            <svg class="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/kontakt"
+            class="inline-flex items-center gap-3 border border-line text-text-dim text-sm tracking-[0.15em] uppercase px-8 py-4 hover:border-amber/50 hover:text-text transition-all duration-300"
+          >
+            Anfrage stellen
+          </a>
+        </div>
+
+        <!-- Tech specs bar -->
+        <div class="animate-fade-up delay-400 mt-12 pt-8 border-t border-line grid grid-cols-3 gap-6">
+          {[
+            { value: '±0.01', unit: '°C', label: 'Genauigkeit' },
+            { value: '25+',   unit: 'J',  label: 'Jahre Erfahrung' },
+            { value: '100%',  unit: '',   label: 'Kalibriert' },
+          ].map(stat => (
+            <div>
+              <div class="font-display text-2xl text-amber tracking-widest">
+                {stat.value}<span class="text-amber-dim text-lg">{stat.unit}</span>
+              </div>
+              <div class="text-[10px] tracking-[0.25em] text-text-dim uppercase mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Gauge Illustration -->
+      <div class="animate-fade-in delay-300 flex items-center justify-center relative">
+
+        <!-- Pulse rings -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-72 h-72 rounded-full border border-amber/10 pulse-ring"></div>
+          <div class="absolute w-72 h-72 rounded-full border border-amber/10 pulse-ring" style="animation-delay: 1s;"></div>
+        </div>
+
+        <!-- Main gauge SVG -->
+        <svg
+          viewBox="0 0 440 440"
+          class="w-full max-w-sm lg:max-w-md xl:max-w-lg animate-glow"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Outer dashed ring -->
+          <circle cx="220" cy="220" r="210" stroke="#1a1a26" stroke-width="1"/>
+          <circle cx="220" cy="220" r="200" stroke="#C8820A" stroke-width="0.5" stroke-dasharray="3 9" opacity="0.5"/>
+
+          <!-- Background circle -->
+          <circle cx="220" cy="220" r="175" fill="#0b0b10" stroke="#1a1a26" stroke-width="1"/>
+
+          <!-- Arc scale (210° sweep) -->
+          <path
+            d="M 64 308 A 160 160 0 1 1 376 308"
+            stroke="#1a1a26"
+            stroke-width="20"
+            fill="none"
+            stroke-linecap="butt"
+          />
+          <path
+            d="M 64 308 A 160 160 0 1 1 376 308"
+            stroke="url(#scaleGrad)"
+            stroke-width="3"
+            fill="none"
+            stroke-linecap="butt"
+            class="draw-line"
+          />
+
+          <!-- Major tick marks (12 ticks over 210°) -->
+          {Array.from({ length: 11 }, (_, i) => {
+            const angle = -120 + i * 21;
+            const rad = (angle * Math.PI) / 180;
+            const cx = 220, cy = 220, r = 155;
+            const x1 = cx + r * Math.cos(rad);
+            const y1 = cy + r * Math.sin(rad);
+            const x2 = cx + (r - 18) * Math.cos(rad);
+            const y2 = cy + (r - 18) * Math.sin(rad);
+            return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#C8820A" stroke-width="${i % 5 === 0 ? 2 : 0.8}" opacity="${i % 5 === 0 ? 0.9 : 0.4}"/>`;
+          }).join('')}
+
+          <!-- Minor tick marks (40 ticks) -->
+          {Array.from({ length: 41 }, (_, i) => {
+            const angle = -120 + i * 5.25;
+            const rad = (angle * Math.PI) / 180;
+            const cx = 220, cy = 220, r = 155;
+            const x1 = cx + r * Math.cos(rad);
+            const y1 = cy + r * Math.sin(rad);
+            const x2 = cx + (r - 8) * Math.cos(rad);
+            const y2 = cy + (r - 8) * Math.sin(rad);
+            return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#C8820A" stroke-width="0.5" opacity="0.25"/>`;
+          }).join('')}
+
+          <!-- Scale labels -->
+          {[0, 20, 40, 60, 80, 100].map((val, i) => {
+            const angle = -120 + i * 42;
+            const rad = (angle * Math.PI) / 180;
+            const cx = 220, cy = 220, r = 125;
+            const x = cx + r * Math.cos(rad);
+            const y = cy + r * Math.sin(rad);
+            return `<text x="${x.toFixed(1)}" y="${(y + 4).toFixed(1)}" text-anchor="middle" fill="#848494" font-size="11" font-family="DM Sans, sans-serif" letter-spacing="1">${val}</text>`;
+          }).join('')}
+
+          <!-- Needle -->
+          <g style="transform-origin: 220px 220px;" class="needle">
+            <line x1="220" y1="220" x2="355" y2="130" stroke="#C8820A" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="220" y1="220" x2="190" y2="248" stroke="#C8820A" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </g>
+
+          <!-- Center hub -->
+          <circle cx="220" cy="220" r="14" fill="#0b0b10" stroke="#C8820A" stroke-width="1.5"/>
+          <circle cx="220" cy="220" r="7" fill="#C8820A"/>
+          <circle cx="220" cy="220" r="3" fill="#0b0b10"/>
+
+          <!-- Digital readout -->
+          <rect x="165" y="260" width="110" height="32" rx="2" fill="#050508" stroke="#1a1a26"/>
+          <text x="220" y="282" text-anchor="middle" fill="#C8820A" font-size="16" font-family="DM Sans, sans-serif" font-weight="600" letter-spacing="4">74.3</text>
+
+          <!-- Unit label -->
+          <text x="220" y="328" text-anchor="middle" fill="#848494" font-size="11" font-family="Bebas Neue, sans-serif" letter-spacing="6">° CELSIUS</text>
+
+          <!-- Brand text inside gauge -->
+          <text x="220" y="185" text-anchor="middle" fill="#1a1a26" font-size="13" font-family="Bebas Neue, sans-serif" letter-spacing="8">ERIMEC</text>
+
+          <!-- Crosshair decorations -->
+          <line x1="220" y1="50" x2="220" y2="70" stroke="#C8820A" stroke-width="1" opacity="0.3"/>
+          <line x1="220" y1="370" x2="220" y2="390" stroke="#C8820A" stroke-width="1" opacity="0.3"/>
+          <line x1="50" y1="220" x2="70" y2="220" stroke="#C8820A" stroke-width="1" opacity="0.3"/>
+          <line x1="370" y1="220" x2="390" y2="220" stroke="#C8820A" stroke-width="1" opacity="0.3"/>
+
+          <!-- Gradient defs -->
+          <defs>
+            <linearGradient id="scaleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#3a3a4a"/>
+              <stop offset="60%"  stop-color="#C8820A"/>
+              <stop offset="100%" stop-color="#FFB830"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Floating data chips -->
+        <div class="absolute top-4 right-0 bg-surface border border-line px-3 py-2 text-[11px] font-mono animate-fade-in delay-600">
+          <span class="text-amber">SN:</span>
+          <span class="text-text-dim ml-1">DT-500-X4</span>
+        </div>
+        <div class="absolute bottom-8 left-0 bg-surface border border-line px-3 py-2 text-[11px] font-mono animate-fade-in delay-700">
+          <span class="text-amber">CAL:</span>
+          <span class="text-text-dim ml-1">2025-11</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-800">
+      <span class="text-[10px] tracking-[0.3em] text-muted uppercase">Scrollen</span>
+      <div class="w-px h-10 bg-gradient-to-b from-amber/50 to-transparent"></div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       STATS SECTION
+  ════════════════════════════════════════════════════════ -->
+  <section class="border-y border-line bg-surface/30">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 lg:grid-cols-4 gap-0">
+      {[
+        { value: '1.200+', label: 'Produkte im Sortiment',  icon: '◈' },
+        { value: '25+',    label: 'Jahre Markterfahrung',   icon: '◈' },
+        { value: '98%',    label: 'Kundenzufriedenheit',    icon: '◈' },
+        { value: '48h',    label: 'Lieferzeit (Ø)',         icon: '◈' },
+      ].map((stat, i) => (
+        <div class={`px-8 py-8 text-center ${i < 3 ? 'border-r border-line' : ''} ${i >= 2 ? 'border-t lg:border-t-0' : ''} `}>
+          <div class="font-display text-4xl md:text-5xl text-amber tracking-widest mb-2">{stat.value}</div>
+          <div class="text-text-dim text-xs tracking-[0.2em] uppercase">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       CATEGORIES OVERVIEW
+  ════════════════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-6 py-28">
+    <!-- Header -->
+    <div class="mb-16">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-8 h-px bg-amber"></span>
+        <span class="text-amber text-[11px] tracking-[0.4em] uppercase">Produktkategorien</span>
+      </div>
+      <h2 class="font-display text-5xl md:text-6xl tracking-wide text-text">
+        UNSERE<br/><span class="text-amber-dim">MESSTECHNIK</span>
+      </h2>
+    </div>
+
+    <!-- Category Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {[
+        {
+          slug: 'temperatur',
+          title: 'Temperatur',
+          count: '45+ Geräte',
+          desc: 'Von Kontaktthermometern bis hin zu berührungslosen Infrarot-Pyrometern.',
+          icon: `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="26" y="8" width="8" height="32" rx="4" stroke="#C8820A" stroke-width="1.5"/>
+            <circle cx="30" cy="44" r="8" stroke="#C8820A" stroke-width="1.5"/>
+            <circle cx="30" cy="44" r="4" fill="#C8820A" opacity="0.6"/>
+            <rect x="29" y="16" width="2" height="22" rx="1" fill="#C8820A" opacity="0.4"/>
+            <line x1="34" y1="20" x2="38" y2="20" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+            <line x1="34" y1="26" x2="38" y2="26" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+            <line x1="34" y1="32" x2="40" y2="32" stroke="#C8820A" stroke-width="1.5" opacity="0.7"/>
+          </svg>`,
+        },
+        {
+          slug: 'druck',
+          title: 'Druck',
+          count: '38+ Geräte',
+          desc: 'Digital- und Analogmanometer für Niederdruck bis Hochdruck-Anwendungen.',
+          icon: `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="28" r="18" stroke="#C8820A" stroke-width="1.5"/>
+            <circle cx="30" cy="28" r="14" stroke="#C8820A" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.5"/>
+            <line x1="30" y1="28" x2="42" y2="16" stroke="#C8820A" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="30" cy="28" r="3" fill="#C8820A"/>
+            <rect x="26" y="44" width="8" height="8" rx="1" stroke="#C8820A" stroke-width="1.5"/>
+            <line x1="30" y1="46" x2="30" y2="50" stroke="#C8820A" stroke-width="1"/>
+            <line x1="14" y1="28" x2="18" y2="28" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+            <line x1="42" y1="28" x2="46" y2="28" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+            <line x1="30" y1="10" x2="30" y2="14" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+          </svg>`,
+        },
+        {
+          slug: 'strahlung',
+          title: 'Strahlung',
+          count: '22+ Geräte',
+          desc: 'Geigerzähler, Dosimeter und UV-Radiometer für sicherheitskritische Umgebungen.',
+          icon: `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="6" stroke="#C8820A" stroke-width="1.5"/>
+            <path d="M30 24 L30 10" stroke="#C8820A" stroke-width="1.5" opacity="0.8"/>
+            <path d="M30 24 L30 10" stroke="#C8820A" stroke-width="1.5" opacity="0.8" transform="rotate(120 30 30)"/>
+            <path d="M30 24 L30 10" stroke="#C8820A" stroke-width="1.5" opacity="0.8" transform="rotate(240 30 30)"/>
+            <path d="M24 28 L14 22" stroke="#C8820A" stroke-width="5" stroke-linecap="round" opacity="0.25"/>
+            <path d="M24 28 L14 22" stroke="#C8820A" stroke-width="5" stroke-linecap="round" opacity="0.25" transform="rotate(120 30 30)"/>
+            <path d="M24 28 L14 22" stroke="#C8820A" stroke-width="5" stroke-linecap="round" opacity="0.25" transform="rotate(240 30 30)"/>
+            <circle cx="30" cy="30" r="18" stroke="#C8820A" stroke-width="0.5" stroke-dasharray="1 5" opacity="0.3"/>
+          </svg>`,
+        },
+        {
+          slug: 'spezial',
+          title: 'Spezial',
+          count: '30+ Geräte',
+          desc: 'pH-Meter, Multimeter, Anemometer und weitere Spezialgeräte für vielfältige Anwendungen.',
+          icon: `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="8" width="36" height="44" rx="2" stroke="#C8820A" stroke-width="1.5"/>
+            <rect x="18" y="14" width="24" height="12" rx="1" stroke="#C8820A" stroke-width="1" opacity="0.5"/>
+            <text x="30" y="24" text-anchor="middle" fill="#C8820A" font-size="9" font-family="monospace">4.7</text>
+            <circle cx="22" cy="36" r="3" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+            <circle cx="30" cy="36" r="3" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+            <circle cx="38" cy="36" r="3" fill="#C8820A" opacity="0.5"/>
+            <circle cx="22" cy="44" r="3" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+            <circle cx="30" cy="44" r="3" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+            <circle cx="38" cy="44" r="3" stroke="#C8820A" stroke-width="1" opacity="0.7"/>
+          </svg>`,
+        },
+      ].map(cat => (
+        <a
+          href={`/produkte?kategorie=${cat.slug}`}
+          class="group relative border border-line p-8 hover:border-amber/40 transition-all duration-500 bg-surface/20 hover:bg-surface/60 overflow-hidden"
+        >
+          <!-- Hover bg accent -->
+          <div class="absolute inset-0 bg-gradient-to-br from-amber/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- Corner accent -->
+          <div class="absolute top-0 right-0 w-8 h-8 border-t border-r border-amber/0 group-hover:border-amber/40 transition-colors duration-500"></div>
+
+          <div class="relative">
+            <!-- Icon -->
+            <div class="w-14 h-14 mb-6" set:html={cat.icon} />
+
+            <!-- Title -->
+            <h3 class="font-display text-2xl tracking-widest text-text mb-1 group-hover:text-amber transition-colors duration-300">
+              {cat.title.toUpperCase()}
+            </h3>
+            <div class="text-[10px] tracking-[0.3em] text-amber-dim uppercase mb-4">{cat.count}</div>
+
+            <!-- Desc -->
+            <p class="text-text-dim text-sm leading-relaxed">{cat.desc}</p>
+
+            <!-- Arrow -->
+            <div class="mt-6 flex items-center gap-2 text-xs tracking-widest text-amber uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <span>Ansehen</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       FEATURES / WHY US
+  ════════════════════════════════════════════════════════ -->
+  <section class="bg-surface/30 border-y border-line py-28">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+        <!-- Left: Content -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-px bg-amber"></span>
+            <span class="text-amber text-[11px] tracking-[0.4em] uppercase">Warum ERIMEC</span>
+          </div>
+          <h2 class="font-display text-5xl tracking-wide text-text mb-8">
+            QUALITÄT<br/>
+            <span class="text-amber">DIE SIE</span><br/>
+            VERTRAUEN
+          </h2>
+          <p class="text-text-dim leading-relaxed mb-10 max-w-md">
+            Seit 1998 beliefern wir Industrieunternehmen, Forschungseinrichtungen und Behörden
+            mit zertifizierten Präzisionsmessgeräten – mit gleichbleibend hoher Qualität.
+          </p>
+
+          <!-- Feature list -->
+          <ul class="space-y-5">
+            {[
+              { title: 'DIN ISO kalibriert',       desc: 'Alle Geräte werden nach DIN-Norm kalibriert und mit Kalibrierprotokoll geliefert.' },
+              { title: '2 Jahre Garantie',         desc: 'Volle Herstellergarantie auf alle Geräte inklusive Kalibrierservice.' },
+              { title: 'Technische Beratung',      desc: 'Unsere Experten beraten Sie bei der Auswahl des passenden Messgeräts.' },
+              { title: 'Schnelle Lieferung',       desc: 'Lagergeräte werden innerhalb von 48 Stunden zu Ihnen geliefert.' },
+            ].map(f => (
+              <li class="flex gap-4 group">
+                <div class="shrink-0 w-8 h-8 border border-amber/40 flex items-center justify-center group-hover:border-amber group-hover:bg-amber/10 transition-all duration-300">
+                  <svg class="w-3 h-3 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-text text-sm font-medium mb-0.5">{f.title}</div>
+                  <div class="text-text-dim text-sm leading-relaxed">{f.desc}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right: Data visualization card -->
+        <div class="relative">
+          <!-- Main card -->
+          <div class="border border-line bg-surface p-8 amber-glow">
+            <div class="flex items-center justify-between mb-8">
+              <div class="font-display tracking-widest text-amber text-sm">SYSTEM STATUS</div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-blink"></span>
+                <span class="text-[10px] tracking-widest text-text-dim uppercase">Online</span>
+              </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="space-y-5">
+              {[
+                { label: 'Temperaturbereich',  val: '99%', w: 99  },
+                { label: 'Druckpräzision',     val: '97%', w: 97  },
+                { label: 'Strahlungssicherheit', val: '100%', w: 100 },
+                { label: 'Kundenzufriedenheit', val: '98%', w: 98  },
+              ].map(m => (
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-text-dim text-xs tracking-wide">{m.label}</span>
+                    <span class="text-amber text-xs font-mono">{m.val}</span>
+                  </div>
+                  <div class="h-px bg-line">
+                    <div
+                      class="h-px bg-amber transition-all duration-1000"
+                      style={`width: ${m.w}%;`}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-line my-7"></div>
+
+            <!-- Bottom info -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-[10px] tracking-[0.2em] text-text-dim uppercase mb-1">Zertifikate</div>
+                <div class="font-display text-lg text-amber tracking-widest">ISO 9001</div>
+              </div>
+              <div>
+                <div class="text-[10px] tracking-[0.2em] text-text-dim uppercase mb-1">Lagernd</div>
+                <div class="font-display text-lg text-amber tracking-widest">1.200+</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative floating card -->
+          <div class="absolute -bottom-6 -right-6 border border-amber/30 bg-bg px-5 py-4 hidden lg:block">
+            <div class="text-[10px] tracking-[0.25em] text-text-dim uppercase mb-1">Letzter Auftrag</div>
+            <div class="text-text text-sm font-medium">Drucksensor MD-400</div>
+            <div class="text-amber text-[11px] mt-0.5">Versandt · 2h ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       CTA SECTION
+  ════════════════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-6 py-28">
+    <div class="relative border border-line p-12 md:p-20 text-center overflow-hidden">
+      <!-- Background grid -->
+      <div class="absolute inset-0 grid-bg opacity-50"></div>
+      <!-- Corner marks -->
+      <div class="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-amber/50"></div>
+      <div class="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-amber/50"></div>
+      <div class="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2 border-amber/50"></div>
+      <div class="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-amber/50"></div>
+      <!-- Ambient glow -->
+      <div class="absolute inset-0 bg-amber/5 blur-3xl pointer-events-none"></div>
+
+      <div class="relative">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <span class="w-8 h-px bg-amber"></span>
+          <span class="text-amber text-[11px] tracking-[0.4em] uppercase">Jetzt starten</span>
+          <span class="w-8 h-px bg-amber"></span>
+        </div>
+        <h2 class="font-display text-5xl md:text-7xl tracking-wide text-text mb-6">
+          BEREIT FÜR<br/>
+          <span class="text-amber">PRÄZISION?</span>
+        </h2>
+        <p class="text-text-dim text-lg max-w-lg mx-auto mb-10 leading-relaxed">
+          Entdecken Sie unser vollständiges Produktsortiment oder kontaktieren Sie uns für eine
+          persönliche Beratung.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/produkte"
+            class="inline-flex items-center gap-3 bg-amber text-bg font-medium text-sm tracking-[0.15em] uppercase px-10 py-4 hover:bg-amber-light transition-colors duration-300"
+          >
+            Alle Produkte
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/kontakt"
+            class="inline-flex items-center gap-3 border border-line text-text text-sm tracking-[0.15em] uppercase px-10 py-4 hover:border-amber/50 transition-all duration-300"
+          >
+            Kontakt aufnehmen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
