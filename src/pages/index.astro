@@ -37,7 +37,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Headline -->
-        <h1 class="animate-fade-up delay-100 font-display text-[clamp(4rem,10vw,8rem)] leading-[0.9] tracking-wide text-text mb-6">
+        <h1 class="animate-fade-up delay-100 font-display text-[clamp(2.5rem,8vw,8rem)] leading-[0.9] tracking-wide text-text mb-6">
           PRÄZISION<br/>
           <span class="text-amber">DIE</span><br/>
           ZÄHLT
@@ -73,14 +73,14 @@ import Layout from '../layouts/Layout.astro';
         <div class="animate-fade-up delay-400 mt-12 pt-8 border-t border-line grid grid-cols-3 gap-6">
           {[
             { value: '±0.01', unit: '°C', label: 'Genauigkeit' },
-            { value: '25+',   unit: 'J',  label: 'Jahre Erfahrung' },
+            { value: '25+',   unit: 'J',  label: 'Erfahrung' },
             { value: '100%',  unit: '',   label: 'Kalibriert' },
           ].map(stat => (
             <div>
-              <div class="font-display text-2xl text-amber tracking-widest">
-                {stat.value}<span class="text-amber-dim text-lg">{stat.unit}</span>
+              <div class="font-display text-xl sm:text-2xl text-amber tracking-wider sm:tracking-widest">
+                {stat.value}<span class="text-amber-dim text-base sm:text-lg">{stat.unit}</span>
               </div>
-              <div class="text-[10px] tracking-[0.25em] text-text-dim uppercase mt-1">{stat.label}</div>
+              <div class="text-[9px] sm:text-[10px] tracking-[0.1em] sm:tracking-[0.25em] text-text-dim uppercase mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -103,16 +103,16 @@ import Layout from '../layouts/Layout.astro';
           xmlns="http://www.w3.org/2000/svg"
         >
           <!-- Outer dashed ring -->
-          <circle cx="220" cy="220" r="210" stroke="#1a1a26" stroke-width="1"/>
+          <circle cx="220" cy="220" r="210" stroke="#3d3d5c" stroke-width="1"/>
           <circle cx="220" cy="220" r="200" stroke="#C8820A" stroke-width="0.5" stroke-dasharray="3 9" opacity="0.5"/>
 
           <!-- Background circle -->
-          <circle cx="220" cy="220" r="175" fill="#0b0b10" stroke="#1a1a26" stroke-width="1"/>
+          <circle cx="220" cy="220" r="175" fill="#1e1e2e" stroke="#3d3d5c" stroke-width="1"/>
 
           <!-- Arc scale (210° sweep) -->
           <path
             d="M 64 308 A 160 160 0 1 1 376 308"
-            stroke="#1a1a26"
+            stroke="#3d3d5c"
             stroke-width="20"
             fill="none"
             stroke-linecap="butt"
@@ -167,19 +167,19 @@ import Layout from '../layouts/Layout.astro';
           </g>
 
           <!-- Center hub -->
-          <circle cx="220" cy="220" r="14" fill="#0b0b10" stroke="#C8820A" stroke-width="1.5"/>
+          <circle cx="220" cy="220" r="14" fill="#1e1e2e" stroke="#C8820A" stroke-width="1.5"/>
           <circle cx="220" cy="220" r="7" fill="#C8820A"/>
-          <circle cx="220" cy="220" r="3" fill="#0b0b10"/>
+          <circle cx="220" cy="220" r="3" fill="#1e1e2e"/>
 
           <!-- Digital readout -->
-          <rect x="165" y="260" width="110" height="32" rx="2" fill="#050508" stroke="#1a1a26"/>
+          <rect x="165" y="260" width="110" height="32" rx="2" fill="#161624" stroke="#3d3d5c"/>
           <text x="220" y="282" text-anchor="middle" fill="#C8820A" font-size="16" font-family="DM Sans, sans-serif" font-weight="600" letter-spacing="4">74.3</text>
 
           <!-- Unit label -->
           <text x="220" y="328" text-anchor="middle" fill="#848494" font-size="11" font-family="Bebas Neue, sans-serif" letter-spacing="6">° CELSIUS</text>
 
           <!-- Brand text inside gauge -->
-          <text x="220" y="185" text-anchor="middle" fill="#1a1a26" font-size="13" font-family="Bebas Neue, sans-serif" letter-spacing="8">ERIMEC</text>
+          <text x="220" y="185" text-anchor="middle" fill="#3d3d5c" font-size="13" font-family="Bebas Neue, sans-serif" letter-spacing="8">ERIMEC</text>
 
           <!-- Crosshair decorations -->
           <line x1="220" y1="50" x2="220" y2="70" stroke="#C8820A" stroke-width="1" opacity="0.3"/>
@@ -221,16 +221,16 @@ import Layout from '../layouts/Layout.astro';
        STATS SECTION
   ════════════════════════════════════════════════════════ -->
   <section class="border-y border-line bg-surface/30">
-    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 lg:grid-cols-4 gap-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 grid grid-cols-2 lg:grid-cols-4 gap-0">
       {[
         { value: '1.200+', label: 'Produkte im Sortiment',  icon: '◈' },
         { value: '25+',    label: 'Jahre Markterfahrung',   icon: '◈' },
         { value: '98%',    label: 'Kundenzufriedenheit',    icon: '◈' },
         { value: '48h',    label: 'Lieferzeit (Ø)',         icon: '◈' },
       ].map((stat, i) => (
-        <div class={`px-8 py-8 text-center ${i < 3 ? 'border-r border-line' : ''} ${i >= 2 ? 'border-t lg:border-t-0' : ''} `}>
-          <div class="font-display text-4xl md:text-5xl text-amber tracking-widest mb-2">{stat.value}</div>
-          <div class="text-text-dim text-xs tracking-[0.2em] uppercase">{stat.label}</div>
+        <div class={`px-4 sm:px-8 py-6 sm:py-8 text-center ${i < 3 ? 'border-r border-line' : ''} ${i >= 2 ? 'border-t sm:border-t-0' : ''}`}>
+          <div class="font-display text-3xl sm:text-4xl md:text-5xl text-amber tracking-widest mb-2">{stat.value}</div>
+          <div class="text-text-dim text-[10px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] uppercase leading-tight">{stat.label}</div>
         </div>
       ))}
     </div>
@@ -488,7 +488,7 @@ import Layout from '../layouts/Layout.astro';
           <span class="text-amber text-[11px] tracking-[0.4em] uppercase">Jetzt starten</span>
           <span class="w-8 h-px bg-amber"></span>
         </div>
-        <h2 class="font-display text-5xl md:text-7xl tracking-wide text-text mb-6">
+        <h2 class="font-display text-3xl sm:text-5xl md:text-7xl tracking-wide text-text mb-6">
           BEREIT FÜR<br/>
           <span class="text-amber">PRÄZISION?</span>
         </h2>

@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-bg:            #050508;
-  --color-surface:       #0b0b10;
-  --color-surface-2:     #131318;
-  --color-line:          #1a1a26;
+  /* Colors - Helleres, professionelles Design */
+  --color-bg:            #1e1e2e;
+  --color-surface:       #262640;
+  --color-surface-2:     #2e2e44;
+  --color-line:          #3d3d5c;
   --color-amber:         #C8820A;
   --color-amber-light:   #E89A18;
   --color-amber-bright:  #FFB830;
-  --color-amber-dim:     #6B440A;
-  --color-text:          #EDE9DF;
-  --color-text-dim:      #848494;
-  --color-muted:         #3a3a4a;
+  --color-amber-dim:     #9a6a18;
+  --color-text:          #f0f0f0;
+  --color-text-dim:      #b8b8c8;
+  --color-muted:         #7878a0;
 
   /* Typography */
   --font-display: "Bebas Neue", sans-serif;
@@ -74,17 +74,17 @@ html { scroll-behavior: smooth; }
 }
 
 ::-webkit-scrollbar       { width: 3px; }
-::-webkit-scrollbar-track { background: #050508; }
+::-webkit-scrollbar-track { background: #1e1e2e; }
 ::-webkit-scrollbar-thumb { background: #C8820A; border-radius: 0; }
 
 /* ─── Utility Classes ─────────────────────────────────────── */
 
 /* Technical grid background */
 .grid-bg {
-  background-color: #050508;
+  background-color: #1e1e2e;
   background-image:
-    linear-gradient(rgba(200, 130, 10, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200, 130, 10, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(200, 130, 10, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 130, 10, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
